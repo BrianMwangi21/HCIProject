@@ -63,18 +63,18 @@
             <a class="nav-link js-scroll-trigger" href="shuttles.php" style="color:black">Shuttles</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#tripadvisory" style="color:black">Trip advisory</a>
+            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Trip advisory</a>
             </li>
         </ul>
         </div>
     </div>
     </nav>
 
-    <section class="content-section text-left" style="padding-top: 100px;">
+    <section class="content-section text-left" style="padding-top:100px;padding-bottom:20px;">
       <div class="container">
         <div class="row">
-          <div class="col-lg-11 mx-auto">
-            <h5>Results</h5>
+          <div class="col-lg-12 mx-auto">
+            <h4>Results</h4>
 
             <div>
                 <table class="table table-striped">

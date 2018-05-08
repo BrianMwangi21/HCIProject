@@ -42,7 +42,7 @@
               <a class="nav-link js-scroll-trigger" href="shuttles.php">Shuttles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#tripadvisory">Trip advisory</a>
+              <a class="nav-link js-scroll-trigger" href="trip.php">Trip advisory</a>
             </li>
           </ul>
         </div>

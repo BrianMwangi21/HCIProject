@@ -77,7 +77,7 @@
             <a class="nav-link js-scroll-trigger" href="shuttles.php" style="color:black">Shuttles</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#tripadvisory" style="color:black">Trip advisory</a>
+            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Trip advisory</a>
             </li>
         </ul>
         </div>
