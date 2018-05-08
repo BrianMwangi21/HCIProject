@@ -9,7 +9,18 @@
     if( isset( $_POST['find_shuttle_btn'] ) ) {
         extract($_POST);
 
-        // Do what is needed in the php end
+        // Save DATA in session and send to results page
+        session_start();
+
+        $_SESSION['vehicle'] = 'buses';
+        $_SESSION['tripType'] = $tripTypeOptions;
+        $_SESSION['departTown'] = $fromSelectGroup;
+        $_SESSION['departDate'] = $fromDate;
+        $_SESSION['destinationTown'] = $toSelectGroup;
+        $_SESSION['returnDate'] = $returnDate;
+        $_SESSION['passengers'] = $numPass;
+
+        header("location:results.php");
     }
 ?>
 
