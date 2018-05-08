@@ -24,7 +24,8 @@
     "Kigali","Kilifi","Kisii","Kisoro","Kisumu","Kitale","Kitui","Lamu","Lilongwe","Lodwar","Lokichoggio","Luanda","Lubumbashi","Lusaka",
     "Machakos","Malaba","Malindi","Maseno","Matayos","Maua","Mbale","Mbarara","Meru","Migori","Mombasa","Mombo","Moshi","Moyale","Mumias",
     "Nairobi","Naivasha","Nakuru","Namanga","Narok","Ntugamo","Oyugis","Same","Segera","Siaya","Sirare","Tanga","Taveta","Ugunja","Voi","Webuye"];
-    $capacity = 16;
+    $capacity1 = rand(6,16);
+    $capacity2 = rand(6,16);
 
 
     // Loop through all towns, create at least one route for each pair
@@ -34,15 +35,18 @@
         for( $j = $i+1; $j < 11; ++$j ) {
             $destinationTown = $towns_array[$j];
 
-            $departureDate = "2018-05-" . (string)rand(13,19);
-            $returnDate = "2018-05-" . (string)rand(20,26);
+            $departureDate = "2018-05-15";
+            $returnDate1 = "2018-05-" . (string)rand(20,26);
+            $returnDate2 = "2018-05-" . (string)rand(20,26);
 
-            $plate = getPlate();
+            $plate1 = getPlate();
+            $plate2 = getPlate();
 
             // Populate the db
-            $query = 'INSERT INTO `shuttles`(`shuttlePlate`, `shuttleCapacity`, `departureTown`, `departureDate`, `destinationTown`, `returnDate`) VALUES (?,?,?,?,?,?)';
+            $query = 'INSERT INTO `shuttles`(`regPlate`, `capacity`, `departureTown`, `departureDate`, `destinationTown`, `returnDate`) VALUES (?,?,?,?,?,?)';
             $stmt = $pdo->prepare($query);
-            $response = $stmt->execute([$plate, $capacity, $departTown, $departureDate, $destinationTown, $returnDate]);
+            $response = $stmt->execute([$plate1, $capacity1, $departTown, $departureDate, $destinationTown, $returnDate1]);
+            $response2 = $stmt->execute([$plate2, $capacity2, $departTown, $departureDate, $destinationTown, $returnDate2]);
 
             if( !$response ) {
                 echo "Run into a wall";
