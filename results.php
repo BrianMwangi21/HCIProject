@@ -20,6 +20,27 @@
         error_log($e->getMessage());
         exit('Something went wrong. Try again');
     }
+
+    if( !empty( $_GET["action"] ) ) {
+		switch ($_GET["action"]) {
+            case 'book':
+                $regPlate = $_GET['vehicle'];
+                $pass = $_GET['pass'];
+
+                $_SESSION['cartreference'] = $regPlate;
+
+                if( $_SESSION['vehicle'] == 'buses' ) {
+                    $_SESSION['totalamount'] = $pass * 400;
+                }else if ( $_SESSION['vehicle'] == 'shuttles' ) {
+                    $_SESSION['totalamount'] = $pass * 300;
+                }
+
+                header("location:payments.php");
+                break;
+            default:
+                break;
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +131,13 @@
                                         echo "<td>" . $row['destinationTown'] . "</td>";
                                         echo "<td>" . $row['returnDate'] . "</td>";
                                         echo "<td>" . $row['capacity'] . "</td>";
-                                        echo "<td><Button class='btn btn-primary'>Book for ". $_SESSION['passengers'] ."</Button></td>";
+                                        ?>
+                                        <form method="POST" action="results.php?action=book&vehicle=<?php echo $row['regPlate'] ?>&pass=<?php echo $_SESSION['passengers'] ?>">
+                                            <td>
+                                                <Button type="submit" class='btn btn-primary'>Book for <?php echo $_SESSION['passengers'] ?> </button> 
+                                            </td>
+                                        </form>
+                                        <?php
                                         echo "</tr>";
                                     }   
                                 }else {
@@ -162,7 +189,13 @@
                                         echo "<td>" . $row['destinationTown'] . "</td>";
                                         echo "<td>" . $row['returnDate'] . "</td>";
                                         echo "<td>" . $row['capacity'] . "</td>";
-                                        echo "<td><Button class='btn btn-primary'>Book for ". $_SESSION['passengers'] ."</Button></td>";
+                                        ?>
+                                        <form method="POST" action="results.php?action=book&vehicle=<?php echo $row['regPlate'] ?>&pass=<?php echo $_SESSION['passengers'] ?>">
+                                            <td>
+                                                <Button type="submit" class='btn btn-primary'>Book for <?php echo $_SESSION['passengers'] ?> </button> 
+                                            </td>
+                                        </form>
+                                        <?php
                                         echo "</tr>";
                                     }   
                                 }else {
