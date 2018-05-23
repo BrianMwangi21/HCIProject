@@ -73,54 +73,38 @@
     </nav>
 
     <section class="content-section text-left" style="padding-top:100px;padding-bottom:20px;">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <div>
-                <form method="POST"  enctype="multipart/form-data" >
-                    <div class="row" style="padding-bottom:20px;">
-                        <div class="col-sm-7" >
-                            <input type="text" class="form-control" placeholder="Enter town to filter" name="tripFilter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                <div>
+                    <form method="POST"  enctype="multipart/form-data" >
+                        <div class="row" style="padding-bottom:20px;">
+                            <div class="col-sm-7" >
+                                <input type="text" class="form-control" placeholder="Enter town to filter" name="tripFilter">
+                            </div>
+                            <div class="col-sm-5" >
+                                <button type="submit" class="btn btn-primary mb-2" name="filter_trip_btn">Filter</button>
+                            </div>
                         </div>
-                        <div class="col-sm-5" >
-                            <button type="submit" class="btn btn-primary mb-2" name="filter_trip_btn">Filter</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Hotel Name</th>
-                            <th>Hotel Description</th>
-                            <th>Rates (per night)</th>
-                            <th>Town</th>
-                            <th>Contacts</th>
-                        </tr>
-                    </thead>
-                        <?php
-                            if( !isset($_SESSION['travelAdv']) || $_SESSION['travelAdv'] == '' ) {
-                                $selectquery = 'SELECT * FROM `traveladvisory`';
-                                
-                                foreach( $pdo->query($selectquery) as $row ) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['hotelName'] . "</td>";
-                                    echo "<td style='width:500px'>" . $row['hotelDescription'] . "</td>";
-                                    echo "<td>" . $row['hotelRates'] . "</td>";
-                                    echo "<td>" . $row['hotelTown'] . "</td>";
-                                    echo "<td>" . $row['hotelContact'] . "</td>";
-                                    echo "</tr>";
-                                }
-                            }else {
-                                $selectquery = "SELECT * FROM `traveladvisory` WHERE `hotelTown` = :query";
-                                $stmt = $pdo->prepare($selectquery);
-                                $stmt->bindValue(':query', $_SESSION['travelAdv']);
-                                $res = $stmt->execute();
-
-                                if( $res ) {
-                                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>Hotel Description</th>
+                                <th>Rates (per night)</th>
+                                <th>Town</th>
+                                <th>Contacts</th>
+                            </tr>
+                        </thead>
+                            <?php
+                                if( !isset($_SESSION['travelAdv']) || $_SESSION['travelAdv'] == '' ) {
+                                    $selectquery = 'SELECT * FROM `traveladvisory`';
+                                    
+                                    foreach( $pdo->query($selectquery) as $row ) {
                                         echo "<tr>";
                                         echo "<td>" . $row['hotelName'] . "</td>";
                                         echo "<td style='width:500px'>" . $row['hotelDescription'] . "</td>";
@@ -128,21 +112,35 @@
                                         echo "<td>" . $row['hotelTown'] . "</td>";
                                         echo "<td>" . $row['hotelContact'] . "</td>";
                                         echo "</tr>";
-                                    }   
+                                    }
                                 }else {
-                                    echo "<tr>";
-                                    echo "<td>No results to show</td>";
-                                    echo "</tr>";
+                                    $selectquery = "SELECT * FROM `traveladvisory` WHERE `hotelTown` = :query";
+                                    $stmt = $pdo->prepare($selectquery);
+                                    $stmt->bindValue(':query', $_SESSION['travelAdv']);
+                                    $res = $stmt->execute();
+
+                                    if( $res ) {
+                                        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                            echo "<tr>";
+                                            echo "<td>" . $row['hotelName'] . "</td>";
+                                            echo "<td style='width:500px'>" . $row['hotelDescription'] . "</td>";
+                                            echo "<td>" . $row['hotelRates'] . "</td>";
+                                            echo "<td>" . $row['hotelTown'] . "</td>";
+                                            echo "<td>" . $row['hotelContact'] . "</td>";
+                                            echo "</tr>";
+                                        }   
+                                    }else {
+                                        echo "<tr>";
+                                        echo "<td>No results to show</td>";
+                                        echo "</tr>";
+                                    }
                                 }
-                            }
-                        ?>
-                </table>
+                            ?>
+                    </table>
+                </div>
+                </div>
             </div>
-
-
-          </div>
         </div>
-      </div>
     </section>
 
 </body>
