@@ -1,5 +1,47 @@
 <?php
     session_start();
+
+    // Pesapal manenoes
+    $reference = null;
+	  $pesapal_tracking_id = null;
+    if(isset($_GET['pesapal_merchant_reference'])) {
+      $reference = $_GET['pesapal_merchant_reference'];
+    }
+    if(isset($_GET['pesapal_transaction_tracking_id'])){
+      $pesapal_tracking_id = $_GET['pesapal_transaction_tracking_id']; 
+    }
+
+    // Save order to the DB
+    $pdo = null;
+    $dsn = "mysql:host=localhost;dbname=emanamba;";
+    $options = [
+        PDO::ATTR_EMULATE_PREPARES => false,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ];
+
+    try {
+        $pdo = new PDO($dsn, "root", "", $options);
+    }catch( PDOException $e) {
+        error_log($e->getMessage());
+        exit('Something went wrong. Try again');
+    }
+
+    $tripTypeOptions = $_SESSION['tripType'];
+    $fromSelectGroup = $_SESSION['departTown'];
+    $fromDate = $_SESSION['departDate'];
+    $toSelectGroup = $_SESSION['destinationTown'] ;
+    $returnDate = $_SESSION['returnDate'];
+    $numPass = $_SESSION['passengers'];
+    $fullnames = $_SESSION['fullnames'];
+
+    $statement = 'INSERT INTO `tickets`(`tripTypeOption`, `fromTown`, `fromDate`, `toTown`, `toDate`, `passengers`, `fullnames`,`ref`,`trackingID`) VALUES (?,?,?,?,?,?,?,?,?)';
+    $stmt = $pdo->prepare($statement);
+    $response = $stmt->execute([$tripTypeOptions, $fromSelectGroup, $fromDate, $toSelectGroup, $returnDate, $numPass, $fullnames, $reference, $pesapal_tracking_id]);
+
+    if( !$response ) {
+      echo "Failed to save!";
+    }
 ?>
 
 <!DOCTYPE html>

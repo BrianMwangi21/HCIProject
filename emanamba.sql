@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 11:01 PM
+-- Generation Time: Jun 03, 2018 at 03:10 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -155,6 +155,37 @@ INSERT INTO `buses` (`busID`, `regPlate`, `capacity`, `departureTown`, `departur
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `Country` varchar(1000) NOT NULL,
+  `City` varchar(1000) NOT NULL,
+  `Description` varchar(1000) NOT NULL,
+  `Accomodation` varchar(1000) NOT NULL,
+  `Major Buses` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`Country`, `City`, `Description`, `Accomodation`, `Major Buses`) VALUES
+('Kenya', 'Nairobi', 'Nairobi is Kenya''s capital and has emerged to be the main travel, , diplomatic, and cultural hub for Eastern Africa with around 3.5 million people.', 'High End: Hilton, Intercontinental, Sankara, Boma, Eka etc Others: Accra,Delta, Kipepeo, Mariposa.', 'Easy Coach, Mash East Africa, Tahmeed, Queens Coach, Transline etc'),
+('Kenya', 'Mombasa', 'This is the second largest city in Kenya lying next to the Indian ocean and is Kenya''s premier tourist''s attraction.', 'High End: White Sands,etc Others: Sunvalencia, Saphire, etc', 'Mash East Africa, Tahmeed, Transline, Modern Coast, Coast Bus, Randa Coach, Spanish Express etc'),
+('Kenya', 'Kisumu', 'This is the second largest city in Kenya lying next to the Indian ocean and is Kenya''s premier tourist''s attraction.', 'High End: White Sands,etc Others: Sunvalencia, Saphire, etc', 'Mash East Africa, Tahmeed, Transline, Modern Coast, Coast Bus, Randa Coach, Spanish Express etc'),
+('Kenya', 'Nakuru', 'Nakuru is Kenya''s 4th largest city famed for its Flamingos. It is the principal financial and logistical hurb of the Greater Rift Valley region connecting Nairobi to Western Kenya', 'Bontana Hotel, Chester Hotel, Cool River Hotel, Hotel Cathay, Hotel Kunste, Midland Hotel etc.', 'Easy coach, Mash East Africa, Queens Coach, Modern Coast etc'),
+('Kenya', 'Eldoret', 'Eldoret is the fifth largest town in Kenya located on the Trans- African Highway about 300km North West of Nairobi and 65km north of the Equator. connecting Nairobi to Western Kenya', 'Pine Tree Gardens, Cicada Hotel, Water crest Gardens, Poa Place and resort etc', 'Easy coach,Mash East Africa'),
+('Uganda', 'Kampala', 'With over 1 million people, the Uganda''s capital is one of the most unique cities in East Africa. It lies close to the shores of L. Victoria-the world''s second largest fresh water lake and the source of R. Nile.', 'Sheraton Kampala Hotel,Kampala Serena Hotel,Hotel Africana,Protea Hotel Kampala,Ravens Hotel', 'Easy coach, Mash East Africa, Queens Coach, Modern Coast, Elgon Flyers,Jaguar,Trinity etc'),
+('Uganda', 'Entebbe', 'Entebbe is the major town in Central Uganda famous for Entebbe International Airport, and the official home and office of the President of Uganda. It is 21 miles from Kampala, the capital of Uganda.', 'Highway Motel Entebbe,Sunset Entebbe,Executive Airport Hotel,Imperial Golf View Hotel', 'Easy Coach'),
+('Tanzania', 'Dar-es-salaam', 'Dar es Salaam (meaning harbor or haven of peace) or Dar as commonly referred to by the locals, is Tanzania''s largest, richest and regionally important economic center and city.', 'Starlight Hotel,Hotel Sapphire,Safari Inn Dar es Salaam,Hotel Nikko Tower', 'Dar Express,Tahmeed ,Sai Baba Express'),
+('Tanzania', 'Arusha', 'Arusha is a popular tourist destination and centre of the northern Tanzania safari circuit. The town lies on the southern foot of Mt. Meru and most people here speak Swahili.', ' Mc-Ellys Hotel,Kibo Palace,Snowcrest Hotel ,East African Hotel,Impala Hotel', 'Dar Express,Tahmeed ,Sai Baba Express'),
+('Rwanda', 'Kigali', 'Kigali is both Rwanda''s capital and also the country''s most important centre. It is surrounded by lush green mountains from which it derives the slogan of the city of a thousand hills.', 'Hotel Des Mille Colines,Kigali Serena Hotel,The Manor Hotel ,Stipp Hotel,Kigali Marriott Hotel', 'Onatracom, Jaguar, Trinity'),
+('Southern Sudan', 'Juba', 'The city is the newest in the world, and the smallest of the ten states of the new African republic-Southern Sudan. Juba is one of the rapidly developing city in the world due to oil money.', 'Acacia Village,Juba Bridge Hotel,Logali House,Juba Grand Hotel,Amarat Hotel,Paradise Hotel', 'Simba Coach etc');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shuttles`
 --
 
@@ -287,6 +318,25 @@ INSERT INTO `shuttles` (`shuttleID`, `regPlate`, `capacity`, `departureTown`, `d
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tickets`
+--
+
+CREATE TABLE `tickets` (
+  `ticketID` int(255) NOT NULL,
+  `tripTypeOption` varchar(1000) NOT NULL,
+  `fromTown` varchar(1000) NOT NULL,
+  `fromDate` date NOT NULL,
+  `toTown` varchar(1000) NOT NULL,
+  `toDate` date DEFAULT NULL,
+  `passengers` int(10) NOT NULL,
+  `fullnames` text NOT NULL,
+  `ref` varchar(1000) NOT NULL,
+  `trackingID` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `traveladvisory`
 --
 
@@ -327,6 +377,12 @@ ALTER TABLE `shuttles`
   ADD PRIMARY KEY (`shuttleID`);
 
 --
+-- Indexes for table `tickets`
+--
+ALTER TABLE `tickets`
+  ADD PRIMARY KEY (`ticketID`);
+
+--
 -- Indexes for table `traveladvisory`
 --
 ALTER TABLE `traveladvisory`
@@ -346,6 +402,11 @@ ALTER TABLE `buses`
 --
 ALTER TABLE `shuttles`
   MODIFY `shuttleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=516;
+--
+-- AUTO_INCREMENT for table `tickets`
+--
+ALTER TABLE `tickets`
+  MODIFY `ticketID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `traveladvisory`
 --
