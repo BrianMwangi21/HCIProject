@@ -19,6 +19,7 @@
         $_SESSION['destinationTown'] = $toSelectGroup;
         $_SESSION['returnDate'] = $returnDate;
         $_SESSION['passengers'] = $numPass;
+        $_SESSION['fullnames'] = $fullnames;
 
         header("location:results.php");
     }
@@ -149,9 +150,15 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row" style="padding-bottom:20px;">
+                    <div class="row">
                         <div class="col-sm-7" >
                             <input type="number" class="form-control" placeholder="Number of passengers" max="5" min="1" name="numPass" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="padding-bottom:20px;">
+                        <div class="col-sm-7" >
+                            <input type="text" class="form-control" placeholder="Full names" name="fullnames" required>
                         </div>
                         <div class="col-sm-5" >
                             <button type="submit" class="btn btn-primary mb-2" name="find_shuttle_btn" >Find Bus</button>
