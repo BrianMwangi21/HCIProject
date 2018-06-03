@@ -1,10 +1,10 @@
 <?php
     session_start();
     // Check for any data
-    if( isset( $_POST['filter_trip_btn'] ) ) {
+    if( isset( $_POST['filter_accomodation_btn'] ) ) {
         extract($_POST);
-        $_SESSION['travelAdv'] = $tripFilter;
-        header("location:trip.php");
+        $_SESSION['travelAccomodation'] = $accomFilter;
+        header("location:accomodation.php");
     }
 
     // Create DB connection to use to run query
@@ -32,7 +32,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eManamba | Trip Advisory</title>
+    <title>eManamba | Accomodation</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -83,10 +83,10 @@
                     <form method="POST"  enctype="multipart/form-data" >
                         <div class="row" style="padding-bottom:20px;">
                             <div class="col-sm-7" >
-                                <input type="text" class="form-control" placeholder="Enter town to filter" name="tripFilter">
+                                <input type="text" class="form-control" placeholder="Enter country or town to filter" name="accomFilter">
                             </div>
                             <div class="col-sm-5" >
-                                <button type="submit" class="btn btn-primary mb-2" name="filter_trip_btn">Filter</button>
+                                <button type="submit" class="btn btn-primary mb-2" name="filter_accomodation_btn">Filter</button>
                             </div>
                         </div>
                     </form>
@@ -96,40 +96,41 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Hotel Name</th>
-                                <th>Hotel Description</th>
-                                <th>Rates (per night)</th>
+                                <th>Country</th>
                                 <th>Town</th>
-                                <th>Contacts</th>
+                                <th>Description</th>
+                                <th>Accomodation</th>
+                                <th>Major Buses</th>
                             </tr>
                         </thead>
                             <?php
-                                if( !isset($_SESSION['travelAdv']) || $_SESSION['travelAdv'] == '' ) {
-                                    $selectquery = 'SELECT * FROM `traveladvisory`';
+                                if( !isset($_SESSION['travelAccomodation']) || $_SESSION['travelAccomodation'] == '' ) {
+                                    $selectquery = 'SELECT * FROM `cities`';
                                     
                                     foreach( $pdo->query($selectquery) as $row ) {
                                         echo "<tr>";
-                                        echo "<td>" . $row['hotelName'] . "</td>";
-                                        echo "<td style='width:500px'>" . $row['hotelDescription'] . "</td>";
-                                        echo "<td>" . $row['hotelRates'] . "</td>";
-                                        echo "<td>" . $row['hotelTown'] . "</td>";
-                                        echo "<td>" . $row['hotelContact'] . "</td>";
+                                        echo "<td>" . $row['Country'] . "</td>";
+                                        echo "<td>" . $row['City'] . "</td>";
+                                        echo "<td style='width:500px'>" . $row['Description'] . "</td>";
+                                        echo "<td>" . $row['Accomodation'] . "</td>";
+                                        echo "<td>" . $row['Major Buses'] . "</td>";
                                         echo "</tr>";
                                     }
                                 }else {
-                                    $selectquery = "SELECT * FROM `traveladvisory` WHERE `hotelTown` = :query";
+                                    $selectquery = "SELECT * FROM `cities` WHERE `Country` = :queryOne or `City` = :queryTwo";
                                     $stmt = $pdo->prepare($selectquery);
-                                    $stmt->bindValue(':query', $_SESSION['travelAdv']);
+                                    $stmt->bindValue(':queryOne', $_SESSION['travelAccomodation']);
+                                    $stmt->bindValue(':queryTwo', $_SESSION['travelAccomodation']);
                                     $res = $stmt->execute();
 
                                     if( $res ) {
                                         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                                             echo "<tr>";
-                                            echo "<td>" . $row['hotelName'] . "</td>";
-                                            echo "<td style='width:500px'>" . $row['hotelDescription'] . "</td>";
-                                            echo "<td>" . $row['hotelRates'] . "</td>";
-                                            echo "<td>" . $row['hotelTown'] . "</td>";
-                                            echo "<td>" . $row['hotelContact'] . "</td>";
+                                            echo "<td>" . $row['Country'] . "</td>";
+                                            echo "<td>" . $row['City'] . "</td>";
+                                            echo "<td style='width:500px'>" . $row['Description'] . "</td>";
+                                            echo "<td>" . $row['Accomodation'] . "</td>";
+                                            echo "<td>" . $row['Major Buses'] . "</td>";
                                             echo "</tr>";
                                         }   
                                     }else {

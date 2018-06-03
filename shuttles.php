@@ -70,14 +70,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="buses.php" style="color:black" >Bus Booking</a>
             </li>
             <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="shuttles.php" style="color:black">Shuttles</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Trip advisory</a>
+            <a class="nav-link js-scroll-trigger" href="accomodation.php" style="color:black">Accomodation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Advisory</a>
             </li>
         </ul>
         </div>

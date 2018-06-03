@@ -35,14 +35,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="buses.php">Bus Booking</a>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="buses.php" >Bus Booking</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="shuttles.php">Shuttles</a>
+            <a class="nav-link js-scroll-trigger" href="shuttles.php" >Shuttles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="trip.php">Trip advisory</a>
+            <a class="nav-link js-scroll-trigger" href="accomodation.php" >Accomodation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="trip.php" >Advisory</a>
             </li>
           </ul>
         </div>
