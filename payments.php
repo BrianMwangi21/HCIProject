@@ -1,5 +1,7 @@
 <?php
     session_start();
+    
+
     include 'OAuth.php';
 
     if( !isset( $_SESSION['vehicle'] ) ) {
@@ -45,7 +47,8 @@
 	$first_name = 'Brian';
 	$last_name = 'Mwangi';
 	$email = 'brian.kabiru@strathmore.edu';
-	$phonenumber = '';
+    $phonenumber = '';
+    
 
 	$callback_url = 'http://127.0.0.1/emanamba/success.php'; //redirect url, the page that will handle the response from pesapal.
 
@@ -105,7 +108,10 @@
             <a class="nav-link js-scroll-trigger" href="shuttles.php" style="color:black">Shuttles</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Trip advisory</a>
+            <a class="nav-link js-scroll-trigger" href="accomodation.php" style="color:black">Accomodation</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="trip.php" style="color:black">Advisory</a>
             </li>
         </ul>
         </div>

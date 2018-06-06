@@ -21,6 +21,8 @@
         $_SESSION['passengers'] = $numPass;
         $_SESSION['fullnames'] = $fullnames;
 
+        // die(var_dump($_SESSION));
+
         header("location:results.php");
     }
 ?>

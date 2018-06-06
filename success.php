@@ -1,5 +1,7 @@
 <?php
     session_start();
+    
+  die(var_dump($_SESSION));    
 
     // Pesapal manenoes
     $reference = null;
@@ -34,6 +36,9 @@
     $returnDate = $_SESSION['returnDate'];
     $numPass = $_SESSION['passengers'];
     $fullnames = $_SESSION['fullnames'];
+
+    die(var_dump($_SESSION));
+
 
     $statement = 'INSERT INTO `tickets`(`tripTypeOption`, `fromTown`, `fromDate`, `toTown`, `toDate`, `passengers`, `fullnames`,`ref`,`trackingID`) VALUES (?,?,?,?,?,?,?,?,?)';
     $stmt = $pdo->prepare($statement);
